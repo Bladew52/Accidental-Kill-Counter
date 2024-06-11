@@ -6,32 +6,43 @@ let tullyCount = document.getElementById("tullybox")
 let tylerCount = document.getElementById("tylerbox")
 let rileyCount = document.getElementById("rileybox")
 let randomCount = document.getElementById("randombox")
+
 let tullyCounter = 0
 let tylerCounter = 0
 let rileyCounter = 0
 let randomCounter = 0
-
+const killCounts = [tullyCounter, tylerCounter, rileyCounter, randomCounter]
+tullyCount.textContent = JSON.parse(localStorage.getItem('tullyKills'));
+tylerCount.textContent = JSON.parse(localStorage.getItem('tylerKills'));
+rileyCount.textContent = JSON.parse(localStorage.getItem('rileyKills'));
+randomCount.textContent = JSON.parse(localStorage.getItem('randomKills'));
 function alarm() {
     alert("Seems like it may be a skill issue. Try not to be such a scrub next time.")
 }
+alarm()
+
 tully.addEventListener("click", function() {
-  tullyCounter ++; 
+let tullyCounter = JSON.parse(localStorage.getItem('tullyKills'));
+tullyCounter += 1; 
    tullyCount.textContent = tullyCounter
+   localStorage.setItem('tullyKills', JSON.stringify(tullyCounter));
 });
 tyler.addEventListener("click", function() {
-  tylerCounter ++; 
-   tylerCount.textContent = tylerCounter
+let tylerCounter = JSON.parse(localStorage.getItem('tylerKills',));
+  tylerCounter += 1; 
+  tylerCount.textContent = tylerCounter
+   localStorage.setItem('tylerKills', JSON.stringify(tylerCounter));
 });
 riley.addEventListener("click", function() {
-  rileyCounter ++; 
-   rileyCount.textContent = rileyCounter
+   let rileyCounter = JSON.parse(localStorage.getItem('rileyKills',));
+  rileyCounter += 1; 
+    rileyCount.textContent = rileyCounter
+   localStorage.setItem('rileyKills', JSON.stringify(rileyCounter));
 });
 random.addEventListener("click", function() {
-  randomCounter ++; 
-   randomCount.textContent = randomCounter
+let randomCounter = JSON.parse(localStorage.getItem('randomKills',));
+ randomCounter += 1 ; 
+    randomCount.textContent = randomCounter
+   localStorage.setItem('randomKills', JSON.stringify(randomCounter));
 });
-const countersArray = [tullyCounter, tylerCounter, randomCounter];
-localStorage.setItem('counts', JSON.stringify(countersArray));
-const counterData = JSON.parse(localStorage.getItem('counts'))
-console.log(counterData)
-alarm()
+
